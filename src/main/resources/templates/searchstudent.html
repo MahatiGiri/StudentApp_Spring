@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Student</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* ===== GLOBAL ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        section {
+            padding: 60px 10%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1e293b;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            background-color: #1e293b;
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            color: #fff;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SEARCH CARD ===== */
+        .search-card {
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .search-card label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .search-card input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+            font-size: 15px;
+        }
+
+        .search-card input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .search-card input[type="submit"]:hover {
+            background-color: #1e40af;
+        }
+
+        /* ===== ALERT ===== */
+        .alert {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #fee2e2;
+            color: #991b1b;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* ===== TABLE ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR (FROM INDEX FRAGMENT) ===== -->
+<div th:replace="~{index :: navbar}"></div>
+
+<section>
+
+    <h2>Search Student</h2>
+
+    <!-- ===== SEARCH FORM ===== -->
+    <div class="search-card">
+        <form th:action="@{/searchsubmit}" method="get">
+            <label>Enter Student ID / Keyword</label>
+            <input type="text" name="keyword" placeholder="Enter student id or name" required>
+            <input type="submit" value="Search">
+        </form>
+
+        <!-- Not Found Message -->
+        <div th:if="${studentEntity == null}" class="alert">
+            No student found. Please try a valid student ID.
+        </div>
+    </div>
+
+    <!-- ===== SEARCH RESULT ===== -->
+    <div th:if="${studentEntity != null}">
+        <table>
+            <tr>
+                <th>Student Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Branch</th>
+                <th>City</th>
+                <th>Course</th>
+                <th>Fees</th>
+            </tr>
+
+            <tr th:each="student : ${studentEntity}">
+                <td th:text="${student.id}"></td>
+                <td th:text="${student.name}"></td>
+                <td th:text="${student.email}"></td>
+                <td th:text="${student.branch}"></td>
+                <td th:text="${student.city}"></td>
+                <td th:text="${student.course}"></td>
+                <td th:text="${student.fees}"></td>
+            </tr>
+        </table>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2025 Student Management System | Academic Project</p>
+</footer>
+
+</body>
+</html>

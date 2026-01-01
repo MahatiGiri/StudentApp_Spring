@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Added</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* ===== GLOBAL ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        /* ===== NAVBAR (SAME AS INDEX PAGE) ===== */
+        nav {
+            background-color: #1e293b;
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            color: #fff;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== SUCCESS CONTAINER ===== */
+        .success-container {
+            max-width: 500px;
+            margin: 120px auto 160px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .success-icon {
+            font-size: 60px;
+            color: #16a34a;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            color: #1e293b;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #475569;
+            margin-bottom: 30px;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            color: white;
+            transition: background 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+        }
+
+        .btn-primary:hover {
+            background-color: #1e40af;
+        }
+
+        .btn-secondary {
+            background-color: #64748b;
+        }
+
+        .btn-secondary:hover {
+            background-color: #475569;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR (INDEX FRAGMENT) ===== -->
+<div th:replace="~{index :: navbar}"></div>
+
+<div class="success-container">
+    <div class="success-icon">✔</div>
+
+    <h2>Student Added Successfully</h2>
+    <p>The student details have been saved in the system.</p>
+
+    <a th:href="@{'/studentform'}" class="btn btn-primary">Add Another Student</a>
+    <a th:href="@{'/studentlist'}"  class="btn btn-secondary">View Students</a>
+</div>
+
+<footer>
+    <p>© 2025 Student Management System</p>
+</footer>
+
+</body>
+</html>

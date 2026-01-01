@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Student List</title>
+
+    <style>
+        /* ===== GLOBAL ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        section {
+            padding: 60px 10%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1e293b;
+        }
+
+        /* ===== NAVBAR ===== */
+        nav {
+            background-color: #1e293b;
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            color: #fff;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== TABLE ===== */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        table th, table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #2563eb;
+            color: white;
+        }
+
+        /* ===== BUTTONS ===== */
+        .btn {
+            padding: 5px 10px;
+            border-radius: 4px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .edit {
+            background-color: #16a34a;
+        }
+
+        .edit:hover {
+            background-color: #15803d;
+        }
+
+        .delete {
+            background-color: #dc2626;
+        }
+
+        .delete:hover {
+            background-color: #b91c1c;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<div th:replace="~{index :: navbar}"></div>
+
+<h2>Student List</h2>
+<div th:if="${successMsg}"
+     style="position: fixed; top: 80px; right: 40px; background: #16a34a; color: white; padding: 15px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.2); z-index: 1000;">
+    <span th:text="${successMsg}"></span>
+</div>
+
+<div th:if="${updateMsg}"
+     style="position: fixed; top: 80px; right: 40px; background: #16a34a; color: white; padding: 15px; border-radius: 5px; box-shadow: 0 5px 10px rgba(0,0,0,0.2); z-index: 1000;">
+    <span th:text="${updateMsg}"></span>
+</div>
+
+<section>
+    <table>
+        <tr>
+            <th>Student Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Branch</th>
+            <th>City</th>
+            <th>Course</th>
+            <th>Fees</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="student : ${studentList}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.branch}"></td>
+            <td th:text="${student.city}"></td>
+            <td th:text="${student.course}"></td>
+            <td th:text="${student.fees}"></td>
+            <td><a th:href="@{'/studentupdate/'+${student.id}}"><button class="btn edit">Update</button></a></td>
+            <td><a th:href="@{'/studentdelete/'+${student.id}}"><button class="btn delete">Delete</button></a></td>
+        </tr>
+    </table>
+</section>
+
+<footer>
+    <p>© 2025 Student Management System</p>
+</footer>
+
+</body>
+</html>

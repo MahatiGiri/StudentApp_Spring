@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* ===== GLOBAL ===== */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 30px;
+            color: #1e293b;
+        }
+
+        /* ===== NAVBAR (SAME AS INDEX PAGE) ===== */
+        nav {
+            background-color: #1e293b;
+            padding: 15px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            color: #fff;
+            margin: 0;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* ===== FORM CONTAINER ===== */
+        .form-wrapper {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: 600;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border: 1px solid #cbd5e1;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #2563eb;
+        }
+
+        /* ===== ERROR TEXT ===== */
+        span {
+            color: #dc2626;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* ===== SUBMIT BUTTON ===== */
+        input[type="submit"] {
+            margin-top: 25px;
+            background-color: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1e40af;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: #1e293b;
+            color: white;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ===== NAVBAR (FROM INDEX FRAGMENT) ===== -->
+<div th:replace="~{index :: navbar}"></div>
+
+<h2>Student Registration Form</h2>
+
+<div class="form-wrapper">
+    <form th:action="@{'/studentsubmit'}" method="post" th:object="${studentEntityObj}">
+
+        <label>Name</label>
+        <input type="text" th:field="*{name}" required>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+
+        <label>Email</label>
+        <input type="email" th:field="*{email}" required>
+        <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+
+        <label>Branch</label>
+        <select th:field="*{branch}" required>
+            <option value="">-- Select Branch --</option>
+            <option value="CS">CS</option>
+            <option value="IT">IT</option>
+        </select>
+        <span th:if="${#fields.hasErrors('branch')}" th:errors="*{branch}"></span>
+
+        <label>City</label>
+        <input type="text" th:field="*{city}" required>
+        <span th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></span>
+
+        <label>Course</label>
+        <select th:field="*{course}" required>
+            <option value="">-- Select Course --</option>
+            <option value="HTML">HTML</option>
+            <option value="CSS">CSS</option>
+            <option value="JavaScript">JavaScript</option>
+            <option value="Java">Java</option>
+            <option value="Advance Java">Advance Java</option>
+            <option value="Spring">Spring</option>
+        </select>
+        <span th:if="${#fields.hasErrors('course')}" th:errors="*{course}"></span>
+
+        <label>Fees</label>
+        <input type="number" th:field="*{fees}" required>
+        <span th:if="${#fields.hasErrors('fees')}" th:errors="*{fees}"></span>
+
+        <input type="submit" value="Add Student">
+    </form>
+</div>
+
+<footer>
+    <p>© 2025 Student Management System</p>
+</footer>
+
+</body>
+</html>
