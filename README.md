@@ -17,7 +17,6 @@ This project is created as an **academic / learning project** to understand Spri
 - Form validation using Spring
 - User-friendly UI using Thymeleaf
 
----
 
 ## 🛠 Technologies Used
 
@@ -30,9 +29,6 @@ This project is created as an **academic / learning project** to understand Spri
 - MySQL Database
 - Apache Tomcat
 
----
-
----
 
 ## 🖥 Application Pages
 
@@ -42,7 +38,6 @@ This project is created as an **academic / learning project** to understand Spri
 - Update Student
 - Search Student
 
----
 
 ## ⚙️ Prerequisites
 
@@ -54,7 +49,6 @@ Before running this project, make sure you have:
 - IDE (IntelliJ IDEA / Eclipse / VS Code)
 - Apache Tomcat Server
 
----
 
 ## 🗄 Database Configuration
 
@@ -65,6 +59,7 @@ CREATE DATABASE studentdb;
 spring.datasource.url=jdbc:mysql://localhost:3306/studentdb
 spring.datasource.username=root
 spring.datasource.password=your_password
+
 
 ## How to Run the Project
 
@@ -87,5 +82,8 @@ spring.datasource.password=your_password
 
       http://localhost:8080/
 
-## 📂 Project Structure
+## 👩‍💻 Author
+
+Mahati Giri
+Student | Java & Spring Developer
 
