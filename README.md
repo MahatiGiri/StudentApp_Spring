@@ -82,8 +82,13 @@ spring.datasource.password=your_password
 
       http://localhost:8080/
 
-## 👩‍💻 Author
+---
 
-  Mahati Giri
-Student | Java & Spring Developer
+ ## 👩🏻‍💻 Author
+
+    Mahati Giri  
+    Student | Java & Spring MVC Developer  
+
+    This project was developed as part of academic learning to understand Spring MVC architecture and CRUD operations.
+
 
